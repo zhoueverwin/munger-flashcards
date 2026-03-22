@@ -893,13 +893,18 @@ function renderLangBar() {
   ).join('');
 }
 
-function switchLang(code) {
+function switchLang(code, updateURL = true) {
   currentLang = code;
   cur = 0;
   flipped = false;
   filterCat = 'all';
   document.getElementById('card').classList.remove('flipped');
   document.documentElement.lang = code;
+  if (updateURL) {
+    const url = new URL(window.location);
+    url.searchParams.set('lang', code);
+    window.history.replaceState({}, '', url);
+  }
   renderLangBar();
   renderUI();
   buildCatNav();
@@ -1019,12 +1024,18 @@ function setView(v) {
   document.getElementById('btn-grid').classList.toggle('active', v==='grid');
 }
 
-// Init
-renderLangBar();
-renderUI();
-buildCatNav();
-renderCard();
-renderGrid();
+// Init — read language from URL param if present
+const params = new URLSearchParams(window.location.search);
+const urlLang = params.get('lang');
+if (urlLang && CARDS_I18N[urlLang]) {
+  switchLang(urlLang, false);
+} else {
+  renderLangBar();
+  renderUI();
+  buildCatNav();
+  renderCard();
+  renderGrid();
+}
 </script>
 </body>
 </html>
