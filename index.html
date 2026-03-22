@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charlie Munger · Psychology of Human Misjudgment</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+JP:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F4EE;
+  --card-bg: #FFFDF8;
+  --ink: #1A1714;
+  --ink-soft: #6B6560;
+  --ink-muted: #A09A94;
+  --accent: #C4773A;
+  --accent-light: #F0E0CC;
+  --border: #E2DBD3;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+.lang-bar {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.lang-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  padding: 5px 14px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.lang-btn:hover { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+.lang-btn.active { background: var(--ink); border-color: var(--ink); color: white; }
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.page-header h1 {
+  font-family: 'Noto Serif SC', 'Noto Serif JP', 'Noto Serif', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.page-header p {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.08em;
+}
+.subtitle-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  margin-top: 1rem;
+}
+.subtitle-line::before, .subtitle-line::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--border);
+}
+.nav-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+.nav-btn {
+  font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+  font-size: 0.78rem;
+  padding: 6px 16px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.04em;
+}
+.nav-btn:hover { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+.nav-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+.progress-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 2rem;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+.prog-bar {
+  width: 120px;
+  height: 3px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.prog-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+.card-stage {
+  display: flex;
+  justify-content: center;
+  perspective: 1200px;
+  margin-bottom: 2rem;
+}
+.card-wrap {
+  width: 100%;
+  max-width: 540px;
+  height: 380px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.card-wrap.flipped { transform: rotateY(180deg); }
+.card-face {
+  position: absolute;
+  inset: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.card-face.back { transform: rotateY(180deg); }
+.card-top-bar {
+  height: 4px;
+  width: 100%;
+  flex-shrink: 0;
+}
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 2.5rem;
+  text-align: center;
+}
+.card-category {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+.card-number {
+  font-family: 'Noto Serif SC', 'Noto Serif JP', 'Noto Serif', serif;
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+.card-title-front {
+  font-family: 'Noto Serif SC', 'Noto Serif JP', 'Noto Serif', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.04em;
+}
+.card-tagline {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  max-width: 380px;
+  font-style: italic;
+}
+.card-flip-hint {
+  position: absolute;
+  bottom: 18px;
+  right: 22px;
+  font-size: 0.7rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.card-flip-hint svg { width: 12px; height: 12px; opacity: 0.5; }
+.card-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 3px 12px;
+  border-radius: 99px;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.06em;
+}
+.card-back-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.back-section-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+}
+.back-explanation {
+  font-size: 0.83rem;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+.examples-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.examples-list li {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  display: flex;
+  gap: 8px;
+}
+.ex-num {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 0.62rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  font-weight: 500;
+}
+.munger-quote-box {
+  background: var(--bg);
+  border-left: 2px solid var(--accent);
+  padding: 8px 12px;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  line-height: 1.6;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 2.5rem;
+}
+.ctrl-btn {
+  font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+  font-size: 0.8rem;
+  padding: 10px 24px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ctrl-btn:hover { border-color: var(--accent); color: var(--accent); }
+.ctrl-btn:disabled { opacity: 0.3; cursor: default; }
+.ctrl-btn.flip-btn {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  padding: 10px 28px;
+}
+.ctrl-btn.flip-btn:hover { opacity: 0.85; }
+.all-cards-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+.mini-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.18s;
+  position: relative;
+  overflow: hidden;
+}
+.mini-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.mini-card .mc-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.mini-card .mc-num {
+  font-size: 0.65rem;
+  color: var(--ink-muted);
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+.mini-card .mc-title {
+  font-family: 'Noto Serif SC', 'Noto Serif JP', 'Noto Serif', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.mini-card .mc-tag {
+  font-size: 0.68rem;
+  padding: 2px 10px;
+  border-radius: 99px;
+}
+.mini-card .mc-tagline {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  margin-top: 6px;
+}
+.view-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 2rem;
+}
+.vt-btn {
+  font-size: 0.78rem;
+  padding: 6px 18px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.vt-btn.active { background: var(--ink); color: white; border-color: var(--ink); }
+#card-view, #grid-view { display: none; }
+#card-view.visible, #grid-view.visible { display: block; }
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.08em;
+}
+</style>
+</head>
+<body>
+<div class="lang-bar" id="lang-bar"></div>
+<div class="page-header">
+  <h1 id="page-title"></h1>
+  <p>CHARLIE MUNGER · PSYCHOLOGY OF HUMAN MISJUDGMENT</p>
+  <div class="subtitle-line" id="page-subtitle"></div>
+</div>
+<div class="nav-bar" id="cat-nav"></div>
+<div class="view-toggle">
+  <button class="vt-btn active" id="btn-card" onclick="setView('card')"></button>
+  <button class="vt-btn" id="btn-grid" onclick="setView('grid')"></button>
+</div>
+<div id="card-view" class="visible">
+  <div class="progress-row">
+    <span id="prog-label">1 / 21</span>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:5%"></div></div>
+    <span id="cat-label"></span>
+  </div>
+  <div class="card-stage">
+    <div class="card-wrap" id="card" onclick="flipCard()">
+      <div class="card-face front" id="card-front">
+        <div class="card-top-bar" id="front-bar"></div>
+        <div class="card-body">
+          <div class="card-number" id="front-num"></div>
+          <div class="card-category" id="front-cat"></div>
+          <div class="card-title-front" id="front-title"></div>
+          <div class="card-tagline" id="front-tagline"></div>
+        </div>
+        <div class="card-flip-hint" id="flip-hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+          <span id="flip-hint-text"></span>
+        </div>
+      </div>
+      <div class="card-face back" id="card-back">
+        <div class="card-top-bar" id="back-bar"></div>
+        <div class="card-back-body" id="back-content"></div>
+      </div>
+    </div>
+  </div>
+  <div class="controls">
+    <button class="ctrl-btn" id="prev-btn" onclick="go(-1)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+      <span id="prev-text"></span>
+    </button>
+    <button class="ctrl-btn flip-btn" onclick="flipCard()" id="flip-btn-text"></button>
+    <button class="ctrl-btn" id="next-btn" onclick="go(1)">
+      <span id="next-text"></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+    </button>
+  </div>
+</div>
+<div id="grid-view">
+  <div class="all-cards-grid" id="grid"></div>
+</div>
+<footer id="footer-text"></footer>
+<script>
+const UI = {
+  zh: {
+    title: "心理误判模型",
+    subtitle: "21 个核心模型",
+    cardView: "逐卡翻阅", gridView: "全览模式",
+    prev: "上一张", next: "下一张", flip: "翻转", flipHint: "点击翻转",
+    all: "全部", model: "模型",
+    coreExplanation: "核心解释", realExamples: "真实例子",
+    mungerSays: "芒格说",
+    footer: "查理·芒格 · 穷查理宝典 · 人类误判心理学"
+  },
+  en: {
+    title: "Mental Misjudgment Models",
+    subtitle: "21 Core Models",
+    cardView: "Card View", gridView: "Grid View",
+    prev: "Previous", next: "Next", flip: "Flip", flipHint: "Click to flip",
+    all: "All", model: "Model",
+    coreExplanation: "Core Explanation", realExamples: "Real-World Examples",
+    mungerSays: "Munger says",
+    footer: "Charlie Munger · Poor Charlie's Almanack · Psychology of Human Misjudgment"
+  },
+  ja: {
+    title: "心理的誤判モデル",
+    subtitle: "21の核心モデル",
+    cardView: "カード表示", gridView: "一覧表示",
+    prev: "前へ", next: "次へ", flip: "裏返す", flipHint: "クリックで裏返す",
+    all: "すべて", model: "モデル",
+    coreExplanation: "核心的説明", realExamples: "実例",
+    mungerSays: "マンガーの言葉",
+    footer: "チャーリー・マンガー · 人間の誤判断の心理学"
+  },
+  es: {
+    title: "Modelos de Error de Juicio",
+    subtitle: "21 Modelos Fundamentales",
+    cardView: "Vista Tarjeta", gridView: "Vista Cuadrícula",
+    prev: "Anterior", next: "Siguiente", flip: "Voltear", flipHint: "Clic para voltear",
+    all: "Todos", model: "Modelo",
+    coreExplanation: "Explicación Central", realExamples: "Ejemplos Reales",
+    mungerSays: "Munger dice",
+    footer: "Charlie Munger · El Almanaque del Pobre Charlie · Psicología del Error Humano"
+  }
+};
+
+const CATS_I18N = {
+  zh: {
+    "reward": "奖惩驱动",
+    "cognitive": "认知捷径",
+    "social": "社会影响",
+    "emotion": "情绪与压力",
+    "memory": "记忆与叙事",
+    "compound": "复合效应"
+  },
+  en: {
+    "reward": "Reward & Punishment",
+    "cognitive": "Cognitive Shortcuts",
+    "social": "Social Influence",
+    "emotion": "Emotion & Stress",
+    "memory": "Memory & Narrative",
+    "compound": "Compound Effects"
+  },
+  ja: {
+    "reward": "報酬と罰",
+    "cognitive": "認知の近道",
+    "social": "社会的影響",
+    "emotion": "感情とストレス",
+    "memory": "記憶と物語",
+    "compound": "複合効果"
+  },
+  es: {
+    "reward": "Recompensa y Castigo",
+    "cognitive": "Atajos Cognitivos",
+    "social": "Influencia Social",
+    "emotion": "Emoción y Estrés",
+    "memory": "Memoria y Narrativa",
+    "compound": "Efectos Compuestos"
+  }
+};
+
+const CAT_COLORS = {
+  "reward": { color: "#C4773A", light: "#F0E0CC" },
+  "cognitive": { color: "#4A7C59", light: "#D8EDE0" },
+  "social": { color: "#5A6FAA", light: "#DAE0F5" },
+  "emotion": { color: "#A05050", light: "#F0DADA" },
+  "memory": { color: "#7A5AA0", light: "#E8DAF5" },
+  "compound": { color: "#4A8A8A", light: "#D8EEEE" }
+};
+
+const CARDS_I18N = {
+  zh: [
+    { cat:"reward", title:"激励机制偏误", tagline:"告诉我激励机制是什么，我就告诉你结果会怎样。",
+      explanation:"人会不自觉地朝对自己有利的方向行动，并在事后找到合理化理由。最关键的是，当事人通常意识不到自己受了激励机制影响，他们真诚地相信自己在客观判断。",
+      examples:["医生推荐贵价手术，可能因为这台手术给他带来更高收入，但他本人会相信这真是最优方案。","联邦快递把薪酬从按小时改成完成后下班，效率立刻飞升。","律师收时薪会让案子拖得更长；收固定费用的律师则想高效解决。","股票分析师给出买入建议远多于卖出——买入推荐能维持与客户的业务关系。"],
+      quote:"永远不要问理发师你是否需要理发。" },
+    { cat:"reward", title:"被喜爱驱动的偏误", tagline:"我们会相信自己喜欢的人说的话，哪怕缺乏证据。",
+      explanation:"人类倾向于顺从、信任、讨好自己喜欢或仰慕的人，并忽视他们的缺点或错误。这种偏误在销售、政治和人际关系中无处不在。",
+      examples:["销售员先聊客户孩子的照片，建立好感，再谈生意——好感度让人降低了判断标准。","我们倾向于接受朋友推荐的理财产品，却对陌生人推荐同款保持怀疑。","粉丝会为偶像代言的产品支付溢价，即使产品并不出众。","谈判中先建立个人关系再提要求，成功率远高于直接谈业务。"],
+      quote:"喜爱会让人忽视逻辑，这是人类最古老的弱点之一。" },
+    { cat:"reward", title:"厌恶偏误", tagline:"我们会拒绝接受来自讨厌的人或事物的真相。",
+      explanation:"人会忽视、曲解甚至主动攻击来自自己讨厌的人或对立阵营的正确观点。这种偏误让人无法从「敌人」那里学到任何东西。",
+      examples:["政治上，一方提出的合理政策，另一方因党派对立而本能反对，即使客观上是好方案。","公司员工听到竞争对手提出的新想法，第一反应往往是找理由批评而不是认真评估。","投资者因为讨厌某个行业而拒绝投资，哪怕回报率极高。","当我们和不喜欢的人意见相同时，会感到不舒服，甚至重新思考自己的立场。"],
+      quote:"不要因为发现真理的人令你不快，就拒绝接受那个真理。" },
+    { cat:"reward", title:"嫉妒/羡慕倾向", tagline:"驱动世界运转的不是贪婪，而是嫉妒。",
+      explanation:"人类对「别人拥有而我没有」的痛苦，远超过对「我自己没有」的不满。别人得到好处并没有让你的处境变差，但人就是会感到痛苦。",
+      examples:["两个员工同时涨薪，一个10%另一个15%——涨了10%的人比没涨薪时更不满意。","房价上涨时，很多人购房不是因为需要，而是因为「邻居买了我也要买」。","公司内部比较文化会严重损害团队合作——当员工开始嫉妒彼此，合作就会瓦解。","社交媒体上看到前同事的成功，即使自己生活不错，也会莫名失落。"],
+      quote:"嫉妒是最愚蠢的罪——你从中一无所获，却让自己饱受折磨。" },
+    { cat:"cognitive", title:"避免怀疑倾向", tagline:"大脑讨厌不确定性，会尽快做出判断来消除焦虑。",
+      explanation:"人类大脑在进化中形成了快速决策的习惯。但在现代复杂世界里，这种「快速确定」的冲动会让我们过早锁定在错误的结论上。",
+      examples:["陪审团听完检察官开场陈述后，就已形成初步判断，后续辩护内容很难撼动。","医生在问诊几分钟内就形成诊断假设，后续信息搜集往往变成「寻找确认」。","投资者在看到新项目前几分钟内就形成好坏判断，后续尽职调查流于形式。","我们第一眼觉得某人不靠谱，之后无论他做什么，都会被解读为「果然如此」。"],
+      quote:"快速消除不确定感的冲动，是大量认知错误的根源。" },
+    { cat:"cognitive", title:"避免不一致倾向", tagline:"人极难改变已有的观念、习惯和身份认同。",
+      explanation:"一旦形成一个信念或习惯，人会本能地维护它，哪怕面对强有力的反驳证据。改变意味着承认之前的判断是错的，这对自我形象构成威胁。",
+      examples:["股票跌了50%，持有者反而加仓——承认「我当初判断错了」太痛苦，不如相信「只是暂时调整」。","科学界新范式的普及总是极为缓慢——旧理论的坚持者往往直到离世，新理论才能真正普及。","公司高管推行了失败的战略，会不断追加投资而不是承认失败，因为认错意味着质疑自己的判断力。","第一印象极难改变——我们会选择性记住符合初始判断的证据，忽略不符合的。"],
+      quote:"一个人的结论越早形成，就越难被改变——这是所有偏见的根源。" },
+    { cat:"cognitive", title:"理由驱动倾向", tagline:"人需要理由才行动，即使理由很荒谬。",
+      explanation:"人类大脑非常重视「因为」这个词。只要给出一个理由——哪怕毫无实质内容——人们就更容易顺从。我们对「理由的形式」比「理由的质量」更敏感。",
+      examples:["兰格的复印机实验：「我能插队吗？因为我需要复印。」成功率与给出实质理由几乎相同。","慈善机构在请求捐款时，只要说「因为孩子们需要帮助」，捐款率就远高于单纯请求。","广告常说「因为您值得拥有」——这是一个没有实质内容的理由，但它有效。","会议上，只要有人能给出任何理由，哪怕明显站不住脚，也能大幅提升方案被通过的概率。"],
+      quote:"给人一个理由，哪怕是糟糕的理由，人就更容易被说服。" },
+    { cat:"cognitive", title:"过度自我重视倾向", tagline:"几乎每个人都认为自己高于平均水平。",
+      explanation:"人系统性地高估自己的能力、判断力和道德水平。成功发生时归功于自己，失败发生时归咎于外部因素。这严重损害了判断力。",
+      examples:["90%的司机认为自己的驾驶技术高于平均水平——这在统计上是不可能的。","大多数人认为自己比同龄人更公平、更聪明——即使在监狱里，大多数囚犯也认为自己比「普通囚犯」更善良。","创业者普遍高估自己成功的概率——他们平均预期超过70%，而实际上大多数创业都会失败。","投资者把赚钱归功于眼光，把亏损归咎于「市场异常」或「消息不对称」。"],
+      quote:"认识你自己——这是最难的自知，也是最有价值的自知。" },
+    { cat:"social", title:"社会认同倾向", tagline:"在不确定的情况下，人会跟随大多数人的行为。",
+      explanation:"当我们不确定该怎么做时，观察他人行为成为最省力的参考。这在进化上是合理的，但在现代社会会导致从众、泡沫和集体非理性。",
+      examples:["餐厅门口排长队，路过的人会认为「这家一定很好」并加入队伍——哪怕起初的人只是在等朋友。","1990年代的网络泡沫：人们购买没有盈利的科技股，理由是「大家都在买」。","紧急情况下，旁观者越多，每个人出手相助的概率反而越低——「旁观者效应」。","时尚行业完全依赖社会认同运作——「今年流行」本质上是「很多人在穿」的自我实现预言。"],
+      quote:"没有什么比看到邻居发财更能扰乱一个人的判断了。" },
+    { cat:"social", title:"权威影响倾向", tagline:"人会过度服从权威，即使权威是错的。",
+      explanation:"我们天生会尊重和服从权威——父母、专家、制度、头衔。这省去了大量独立思考的成本。但当权威本身出错或被滥用时，会导致灾难性的后果。",
+      examples:["米尔格伦实验：普通人在「权威科学家」的指令下，愿意对陌生人施加危险电击——服从率高达65%。","医疗事故中，护士明知医生的医嘱有误，但仍然执行——因为医生是权威。","穿制服的骗子成功率远高于普通装扮——制服是权威的符号，降低了人们的警戒心。","金融危机前，评级机构给有毒资产AAA评级，投资者因「权威认证」而大量购买。"],
+      quote:"永远不要因为权威说了什么，就停止独立思考。" },
+    { cat:"social", title:"地位驱动倾向", tagline:"人类对社会地位的渴望，驱动了大量非理性行为。",
+      explanation:"在社会性动物中，地位决定了资源获取和生存概率。这种古老的驱动力在现代社会以各种方式表现出来——追求名牌、头衔、豪宅，有时不惜损害实际利益来维护「面子」。",
+      examples:["很多人购买豪车不是因为交通需求，而是传递「我成功了」的信号——哪怕为此背负沉重债务。","企业家拒绝接受外部投资，因为接受意味着承认自己需要帮助，损害「独立成功」的形象。","在谈判中，很多协议因为一方不愿「看起来软弱」而破裂，即使实质利益是有利的。","很多人在社交媒体上分享「成功瞬间」而非真实生活，是地位驱动倾向在数字时代的体现。"],
+      quote:"人类愿意为了尊严付出远超经济理性的代价。" },
+    { cat:"emotion", title:"压力影响倾向", tagline:"压力会严重扭曲判断，并使人更容易被操控。",
+      explanation:"当处于高度压力或紧迫感下，人的决策质量会大幅下降。销售技术、谈判策略和诈骗手段都大量利用这一点——通过制造「限时」「稀缺」「紧急」来迫使人快速决定。",
+      examples:["「限时优惠，仅剩3件！」——制造的压力让人跳过理性分析，直接进入抢购模式。","电话诈骗通常声称「你的银行账户现在就有危险」——紧迫感让人来不及核实就行动。","谈判专家知道，在对方「急需结果」时提出让步要求，成功率会大幅提升。","面对被催促「必须马上决定」的场合，冷静等待反而是最聪明的策略。"],
+      quote:"当你感到被催促时，这正是你最需要慢下来的时刻。" },
+    { cat:"emotion", title:"损失规避倾向", tagline:"损失的痛苦是同等收益快乐的两倍。",
+      explanation:"人对损失的敏感度远超对收益的敏感度。失去100元的痛苦，需要得到约200元才能弥补。这导致人们拒绝止损、过早兑现盈利，做出系统性的非理性决策。",
+      examples:["投资者死抱亏损股票不愿割肉——卖出意味着「亏损变成现实」，而不卖就是「只是账面亏损」。","「手术成功率80%」和「手术死亡率20%」是同一件事，但前者让患者更愿意接受手术。","公司宁愿维持现状的不合理制度，也不愿改革——因为改革意味着放弃已有资源，感觉像损失。","芒格和巴菲特的原则：一旦发现自己挖了一个坑，第一件事是停止挖坑。"],
+      quote:"对损失的恐惧，常常比对收益的渴望更能主导人的行为。" },
+    { cat:"emotion", title:"情绪放大的过度自信", tagline:"高估自己，是人类最普遍的认知偏误之一。",
+      explanation:"在情绪高涨时，过度自我重视倾向会被进一步放大——人会在兴奋或恐惧状态下做出平时绝对不会做的判断。",
+      examples:["赌博者在连赢几局后，会觉得自己「掌握了规律」，然后开始更大规模的冒险。","创业者在早期小成功后，往往会在更大的赌注上犯同样的错误，只是规模更大。","在市场狂热时期，「这次不一样」是最危险的四个字——芒格说他一听到这句话就警觉。","情绪高涨时做出的决定，在情绪平静后往往让自己感到困惑。"],
+      quote:"当你觉得自己无所不能的时候，正是最危险的时刻。" },
+    { cat:"memory", title:"错误联想倾向", tagline:"大脑会把同时出现的事物联系在一起，即使毫无因果关系。",
+      explanation:"巴甫洛夫的狗听到铃声就分泌唾液，因为铃声和食物同时出现过。人类也有同样的机制——我们会把同时发生的事物联系起来，形成条件反射式的联想。",
+      examples:["品牌广告把产品与美女、成功、快乐放在一起，让消费者联想到购买这个产品就能获得这些。","迷信的来源：运动员在一场胜利前穿了红色袜子，之后比赛都穿红袜——两件事恰好同时发生。","送坏消息的人会因为消息本身而被厌恶——「杀掉信使」的冲动就是错误联想。","芒格说他从不在商业会议上批评人——联想效应会让人把被批评的感觉和他本人联系起来。"],
+      quote:"联想是大脑最古老的学习机制，也是最容易被操控的弱点。" },
+    { cat:"memory", title:"对比效应", tagline:"人不用绝对标准判断事物，而是通过对比。",
+      explanation:"我们对任何事物的感知都受到参照系的影响。同一件事，在不同背景下感受完全不同。销售员、谈判者和设计师都大量利用这一效应来操控感知。",
+      examples:["房产经纪人会先带你看几套破旧的贵价房，再带你看真正想卖的房子——对比之下目标房显得物超所值。","餐厅菜单上标注一道$200的「顶级牛排」，目的不是卖它，而是让旁边$80的牛排显得「合理」。","先提出一个极端的要求被拒绝，再提出真正想要的合理要求——对比之下第二个显得很小。","薪资谈判中，先抛出一个高数字锚定预期，再让步，对方会感觉「捡了便宜」。"],
+      quote:"感知不是绝对的，它永远是相对的——这是一切操控手段的基础。" },
+    { cat:"memory", title:"沉没成本倾向", tagline:"因为已经投入了，就继续做一件不该继续的事。",
+      explanation:"沉没成本是已经无法收回的投入——时间、金钱、情感。理性上，决策应该只基于「未来」，而不是「过去的投入」。但人类很难做到这一点。",
+      examples:["协和飞机：英法两国政府明知项目商业上不可行，但因为已投入大量资金，继续维持了多年。","看一场无聊的电影到结束，就因为「票已经买了」——但票钱无法收回，继续看只是浪费时间。","一段不幸福的婚姻维持了十年，就因为「我们已经在一起这么久了」。","越战就是典型的沉没成本案例——为了让牺牲的士兵「死得有意义」而继续打一场无法获胜的战争。"],
+      quote:"如果你发现自己在一个坑里，最重要的事是停止挖掘。" },
+    { cat:"compound", title:"Lollapalooza效应", tagline:"多种偏误同时朝一个方向发力，会产生极端非理性。",
+      explanation:"这是芒格最独特的贡献。单个心理偏误的影响有限，但当多种偏误同时指向同一方向时，会产生超线性的极端效果——就像核裂变一样，达到临界点后爆炸性发展。",
+      examples:["传销同时激活：社会认同+权威+激励机制+喜爱偏误+沉没成本——多重偏误叠加，极难逃脱。","邪教：爱轰炸建立喜爱感+权威领袖取代独立判断+社会认同强化信仰+厌恶偏误切断逃脱路径。","股市泡沫：社会认同+损失规避+权威认可+过度自信——四重叠加造就集体疯狂。","赌场同时利用：间歇性强化+社会认同+对比效应+压力感——强烈成瘾。"],
+      quote:"一个偏误是小漏洞，几个偏误叠加就是洪水。理解这一点，你就理解了历史上所有疯狂。" },
+    { cat:"compound", title:"成瘾倾向", tagline:"人容易对带来强烈奖励的事物上瘾，并为之扭曲所有判断。",
+      explanation:"某些行为会触发大脑的强烈奖励机制，一旦上瘾，人会为了获得这种奖励而扭曲所有判断和行为。芒格把这个范畴扩展到权力、金钱、名声等各种形式的「上瘾」。",
+      examples:["权力上瘾：历史上很多领导人在获得权力后，会做出维护权力远超维护道德的决策。","社交媒体的「点赞」机制是设计出来的间歇性强化——不确定性让人反复查看。","工作狂：「成就感」本身可以上瘾，导致人牺牲健康和家庭。","金融界的过度冒险：交易员在大赚一笔后的兴奋感驱使他们继续冒险，超过合理风险边界。"],
+      quote:"上瘾不只是毒品的问题，任何能触发强烈奖励感的事物，都有让人失去判断的潜力。" },
+    { cat:"compound", title:"衰老与思维僵化", tagline:"随着年龄增长，人越来越难接受新的信息和改变。",
+      explanation:"大脑随着年龄增长逐渐固化，形成强烈的「现有模式」偏好。这使得老年人往往更固执，更难以更新信念，更倾向于用过去的框架解读新问题。",
+      examples:["普朗克曾说：科学的进步不是通过说服反对者，而是通过等待他们去世。","很多大公司被创业公司颠覆，不是因为缺乏资源，而是因为高管团队的思维已固化在旧模式中。","芒格年近百岁还在学习新知识——「如果我停止学习，我就开始死亡」。","退休后放弃所有智识挑战的人，认知衰退速度明显快于持续学习的人。"],
+      quote:"最大的危险不是无知，而是自以为知道——但其实用的是几十年前的旧地图。" },
+    { cat:"compound", title:"好奇心倾向", tagline:"主动的好奇心，是对抗所有心理偏误的最好解药。",
+      explanation:"这是芒格清单里唯一的「正面」倾向。他认为，人天生对新事物有好奇心，但现代社会让人变得越来越被动。主动维持好奇心是一种习惯，需要刻意培养。",
+      examples:["芒格从不读一本书的摘要——他认为摘要剥夺了自己发现惊喜的机会。","他每天花大量时间阅读各个领域的书籍，不是为了「学有用的」，而是因为真正好奇。","他推荐的读书方法：顺着作者引用找到下一本书，而不是从书单里随机挑。","他说：「我没有什么特别天赋，我只是对自己感到困惑的事情保持极度的好奇心，然后一定要弄清楚。」"],
+      quote:"手持好奇心的人，是永远不会无聊的人——也是永远在进步的人。" },
+  ],
+  en: [
+    { cat:"reward", title:"Incentive-Caused Bias", tagline:"Show me the incentive and I will show you the outcome.",
+      explanation:"People unconsciously act in their own financial interest, then rationalize their behavior afterward. The key insight is that the person usually doesn't realize they're being influenced by incentives — they sincerely believe they're making objective judgments.",
+      examples:["A doctor recommends expensive surgery partly because it pays more, yet genuinely believes it's the best option for the patient.","FedEx switched from hourly pay to shift completion pay, and efficiency skyrocketed overnight.","Lawyers paid by the hour drag cases out longer; lawyers paid flat fees resolve them quickly.","Stock analysts issue far more 'buy' than 'sell' recommendations — buy recommendations maintain client relationships."],
+      quote:"Never ask a barber whether you need a haircut." },
+    { cat:"reward", title:"Liking/Loving Tendency", tagline:"We believe what people we like tell us, even without evidence.",
+      explanation:"Humans tend to comply with, trust, and please people they like or admire, while ignoring their faults or mistakes. This bias is everywhere in sales, politics, and personal relationships.",
+      examples:["A salesperson chats about a client's family photos first, building rapport — likability lowers the client's judgment standards.","We tend to accept financial products recommended by friends but remain skeptical of the same product from strangers.","Fans pay premium prices for products endorsed by their idols, even when the products aren't exceptional.","In negotiations, building personal rapport before making requests yields far higher success rates than jumping straight to business."],
+      quote:"Liking makes people ignore logic — it's one of humanity's oldest weaknesses." },
+    { cat:"reward", title:"Disliking/Hating Tendency", tagline:"We reject truths that come from people or things we dislike.",
+      explanation:"People ignore, distort, or actively attack correct views from those they dislike or from opposing camps. This bias prevents people from learning anything from their 'enemies.'",
+      examples:["In politics, one party instinctively opposes a reasonable policy proposed by the other, even when it's objectively sound.","When employees hear a new idea from a competitor, their first reaction is to criticize rather than evaluate.","Investors refuse to invest in industries they dislike, even when returns are exceptionally high.","When we agree with someone we dislike, we feel uncomfortable and may even reconsider our own position."],
+      quote:"Don't reject a truth just because the person who discovered it displeases you." },
+    { cat:"reward", title:"Envy/Jealousy Tendency", tagline:"It is not greed that drives the world, but envy.",
+      explanation:"The pain of 'others have what I don't' far exceeds the pain of simply 'not having.' Someone else's gain doesn't worsen your situation, yet humans feel it as pain nonetheless.",
+      examples:["Two employees both get raises — 10% and 15% respectively. The one who got 10% is more unhappy than before any raise.","During housing booms, many buy not out of need but because 'my neighbor bought, so I must too.'","Internal comparison culture severely damages teamwork — when employees start envying each other, cooperation collapses.","Seeing a former colleague's success on social media makes us feel inexplicably down, even if our own life is going well."],
+      quote:"Envy is the most foolish sin — you gain nothing from it, yet it torments you endlessly." },
+    { cat:"cognitive", title:"Doubt-Avoidance Tendency", tagline:"The brain hates uncertainty and rushes to judgment to eliminate anxiety.",
+      explanation:"The human brain evolved to make quick decisions. But in our complex modern world, this urge to 'quickly decide' locks us into wrong conclusions prematurely.",
+      examples:["Jurors form preliminary judgments after the prosecutor's opening statement — subsequent defense arguments struggle to change their minds.","Doctors form diagnostic hypotheses within minutes and then gather information that confirms their hypothesis.","Investors form good/bad judgments about new projects within minutes — subsequent due diligence becomes a formality.","Once we decide someone is unreliable at first glance, everything they do afterward gets interpreted as 'I knew it.'"],
+      quote:"The impulse to quickly eliminate doubt is the source of countless cognitive errors." },
+    { cat:"cognitive", title:"Inconsistency-Avoidance Tendency", tagline:"People find it extremely hard to change existing beliefs, habits, and identity.",
+      explanation:"Once a belief or habit forms, people instinctively defend it, even against powerful contradicting evidence. Change means admitting previous judgments were wrong, which threatens self-image.",
+      examples:["When a stock drops 50%, holders double down rather than admit 'I was wrong' — it's less painful to believe 'it's just a temporary dip.'","New paradigms in science spread extremely slowly — defenders of old theories often must pass away before new ones prevail.","Executives who championed failed strategies keep investing more rather than admitting failure, because being wrong threatens their self-image.","First impressions are nearly impossible to change — we selectively remember evidence that confirms our initial judgment."],
+      quote:"The earlier a conclusion is formed, the harder it is to change — this is the root of all prejudice." },
+    { cat:"cognitive", title:"Reason-Respecting Tendency", tagline:"People need a reason to act, even if the reason is absurd.",
+      explanation:"The human brain heavily values the word 'because.' Providing any reason — even one with no real substance — makes people much more compliant. We're more sensitive to the form of a reason than its quality.",
+      examples:["Langer's copy machine experiment: 'Can I cut in line? Because I need to make copies' had nearly the same success rate as giving a real reason.","Charities that say 'because the children need help' get far higher donation rates than those that simply ask.","Ads often say 'Because you're worth it' — a reason with zero substance, yet it works.","In meetings, anyone who provides any reason, even a flimsy one, dramatically increases the chance their proposal gets approved."],
+      quote:"Give people a reason — even a bad one — and they become much easier to persuade." },
+    { cat:"cognitive", title:"Excessive Self-Regard", tagline:"Almost everyone thinks they're above average.",
+      explanation:"People systematically overestimate their abilities, judgment, and moral standing. When success happens, they credit themselves; when failure happens, they blame external factors. This severely impairs judgment.",
+      examples:["90% of drivers believe their driving skills are above average — statistically impossible.","Most people think they're fairer and smarter than peers — even in prison, most inmates believe they're kinder than the 'average prisoner.'","Entrepreneurs consistently overestimate their chances of success — they expect 70%+ odds, while most startups actually fail.","Investors credit gains to their insight but blame losses on 'market anomalies' or 'information asymmetry.'"],
+      quote:"Know thyself — the hardest self-knowledge, and the most valuable." },
+    { cat:"social", title:"Social-Proof Tendency", tagline:"When uncertain, people follow what the majority does.",
+      explanation:"When we don't know what to do, observing others' behavior becomes the easiest reference. This made evolutionary sense, but in modern society it leads to conformity, bubbles, and collective irrationality.",
+      examples:["A long line outside a restaurant makes passersby think 'it must be good' and join — even if the original people were just waiting for friends.","The 1990s dot-com bubble: people bought unprofitable tech stocks because 'everyone else is buying.'","In emergencies, the more bystanders there are, the less likely any individual is to help — the 'bystander effect.'","The fashion industry runs entirely on social proof — 'this year's trend' is essentially a self-fulfilling prophecy of 'many people are wearing it.'"],
+      quote:"Nothing disturbs a person's judgment more than watching their neighbor get rich." },
+    { cat:"social", title:"Authority-Misinfluence Tendency", tagline:"People over-obey authority, even when authority is wrong.",
+      explanation:"We're hardwired to respect and obey authority — parents, experts, institutions, titles. This saves enormous thinking costs. But when authority itself is wrong or abused, the consequences can be catastrophic.",
+      examples:["Milgram experiment: ordinary people followed an 'authoritative scientist's' instructions to administer dangerous shocks — compliance rate was 65%.","In medical errors, nurses knew the doctor's order was wrong but still carried it out — because the doctor is the authority.","Con artists in uniforms succeed far more than those in plain clothes — uniforms are symbols of authority that lower people's guard.","Before the financial crisis, rating agencies gave toxic assets AAA ratings, and investors bought massively based on 'authoritative certification.'"],
+      quote:"Never stop thinking independently just because an authority said something." },
+    { cat:"social", title:"Status-Seeking Tendency", tagline:"The human craving for social status drives enormous amounts of irrational behavior.",
+      explanation:"In social animals, status determines resource access and survival probability. This ancient drive manifests in modern society as pursuit of luxury brands, titles, and mansions — sometimes at the expense of actual interests to preserve 'face.'",
+      examples:["Many buy luxury cars not for transportation but to signal 'I've made it' — even if it means crushing debt.","Entrepreneurs refuse outside investment because accepting it means admitting they need help, damaging their 'self-made' image.","In negotiations, many deals collapse because one side refuses to 'appear weak,' even when the actual terms are favorable.","Sharing only 'success moments' on social media rather than real life is status-seeking tendency in the digital age."],
+      quote:"Humans will pay a price far beyond economic rationality for the sake of dignity." },
+    { cat:"emotion", title:"Stress-Influence Tendency", tagline:"Stress severely distorts judgment and makes people easier to manipulate.",
+      explanation:"Under high stress or urgency, decision quality drops dramatically. Sales techniques, negotiation tactics, and scams all exploit this — creating 'limited time,' 'scarcity,' and 'urgency' to force quick decisions.",
+      examples:["'Limited time offer, only 3 left!' — manufactured pressure makes people skip rational analysis and enter panic-buying mode.","Phone scams claim 'your bank account is in danger right now' — urgency makes people act before they can verify.","Negotiation experts know that making concession requests when the other side 'urgently needs results' dramatically increases success rates.","When pressured to 'decide right now,' waiting calmly is actually the smartest strategy."],
+      quote:"When you feel rushed, that's precisely when you most need to slow down." },
+    { cat:"emotion", title:"Loss Aversion Tendency", tagline:"The pain of loss is twice the pleasure of an equivalent gain.",
+      explanation:"People are far more sensitive to losses than to gains. Losing $100 causes pain that requires gaining about $200 to offset. This causes people to refuse to cut losses, take profits too early, and make systematically irrational decisions.",
+      examples:["Investors cling to losing stocks — selling means 'making the loss real,' while holding is 'just a paper loss.'","'80% surgery success rate' and '20% surgery mortality rate' are the same thing, but the first framing makes patients more willing to proceed.","Companies prefer maintaining unfair legacy systems over reform — because reform means giving up existing resources, which feels like a loss.","Munger and Buffett's principle: When you find yourself in a hole, the first thing to do is stop digging."],
+      quote:"Fear of loss often dominates human behavior more than desire for gain." },
+    { cat:"emotion", title:"Emotion-Amplified Overconfidence", tagline:"Overestimating oneself is one of humanity's most universal cognitive biases.",
+      explanation:"When emotions run high, the excessive self-regard tendency amplifies further — people make judgments during excitement or fear that they would never make in a calm state.",
+      examples:["Gamblers on a winning streak feel they've 'figured out the pattern' and begin taking much bigger risks.","Entrepreneurs after early small successes often make the same mistakes on bigger bets, just at a larger scale.","During market mania, 'this time is different' are the four most dangerous words — Munger said he becomes alert whenever he hears them.","Decisions made during emotional highs often leave people puzzled once they've calmed down."],
+      quote:"When you feel invincible, that's precisely when you're in the most danger." },
+    { cat:"memory", title:"Simple Association Tendency", tagline:"The brain links things that appear together, even without causal relationship.",
+      explanation:"Pavlov's dogs salivated at the sound of a bell because bells and food had appeared together. Humans have the same mechanism — we link co-occurring events and form conditioned associations.",
+      examples:["Brand ads pair products with attractive people, success, and happiness, making consumers associate the product with obtaining these things.","Origin of superstition: an athlete wore red socks before a winning game and then wore them to every game afterward — mere coincidence.","Bearers of bad news are disliked because of the news itself — the 'kill the messenger' impulse is simple association at work.","Munger says he never criticizes people in business meetings — the association effect would link negative feelings to him personally."],
+      quote:"Association is the brain's oldest learning mechanism and its most easily exploited weakness." },
+    { cat:"memory", title:"Contrast Effect", tagline:"People don't judge things by absolute standards, but by comparison.",
+      explanation:"Our perception of anything is influenced by the frame of reference. The same thing feels completely different against different backgrounds. Salespeople, negotiators, and designers all exploit this effect extensively to manipulate perception.",
+      examples:["Real estate agents show a few overpriced, run-down houses first, then the one they actually want to sell — by comparison, the target house looks like a bargain.","A restaurant menu lists a $200 'premium steak' not to sell it, but to make the adjacent $80 steak seem 'reasonable.'","First make an extreme request that gets rejected, then make your actual reasonable request — by contrast, the second seems small.","In salary negotiations, anchoring high first then conceding makes the other side feel they 'got a deal.'"],
+      quote:"Perception is never absolute, always relative — this is the foundation of all manipulation." },
+    { cat:"memory", title:"Sunk Cost Tendency", tagline:"Continuing something you shouldn't, just because you've already invested.",
+      explanation:"Sunk costs are investments that can never be recovered — time, money, emotion. Rationally, decisions should only be based on the future, not past investments. But humans find this extremely hard to do.",
+      examples:["The Concorde: British and French governments knew the project was commercially unviable but continued for years because of the money already spent.","Watching a boring movie to the end 'because I already bought the ticket' — but the ticket money is gone; continuing only wastes time.","Maintaining an unhappy marriage for a decade 'because we've been together so long.'","The Vietnam War was a textbook sunk cost case — continuing an unwinnable war to make the sacrificed soldiers' deaths 'meaningful.'"],
+      quote:"If you find yourself in a hole, the most important thing is to stop digging." },
+    { cat:"compound", title:"Lollapalooza Effect", tagline:"Multiple biases pushing in the same direction produce extreme irrationality.",
+      explanation:"This is Munger's most unique contribution. Individual psychological biases have limited impact, but when multiple biases point in the same direction simultaneously, they produce super-linear extreme effects — like nuclear fission, reaching a critical mass then exploding.",
+      examples:["MLM schemes activate simultaneously: social proof + authority + incentives + liking bias + sunk costs — multiple biases stacked, nearly impossible to escape.","Cults: love bombing builds liking + authoritative leader replaces independent judgment + social proof reinforces beliefs + disliking tendency blocks escape.","Stock market bubbles: social proof + loss aversion + authority endorsement + overconfidence — four layers creating collective mania.","Casinos simultaneously exploit: intermittent reinforcement + social proof + contrast effect + stress — powerful addiction."],
+      quote:"One bias is a small leak; several biases stacked together create a flood. Understand this and you understand all the madness in history." },
+    { cat:"compound", title:"Drug/Addiction Tendency", tagline:"People easily become addicted to things that provide intense rewards, distorting all judgment.",
+      explanation:"Certain behaviors trigger the brain's powerful reward mechanisms. Once addicted, people distort all judgments and behavior to obtain that reward. Munger extends this category beyond substances to power, money, fame, and other forms of 'addiction.'",
+      examples:["Power addiction: many historical leaders, after gaining power, made decisions to protect power that far exceeded moral considerations.","Social media 'likes' are engineered intermittent reinforcement — uncertainty makes people check repeatedly.","Workaholism: the sense of achievement itself can be addictive, causing people to sacrifice health and family.","Financial risk-taking: traders' excitement after a big win drives them to continue taking risks beyond reasonable limits."],
+      quote:"Addiction isn't just about drugs. Anything that triggers intense reward has the potential to make people lose their judgment." },
+    { cat:"compound", title:"Aging & Mental Rigidity", tagline:"With age, people find it increasingly hard to accept new information and change.",
+      explanation:"The brain gradually ossifies with age, forming strong preferences for existing patterns. This makes elderly people more stubborn, harder to update beliefs, and more inclined to interpret new problems through old frameworks.",
+      examples:["Planck said: science advances not by convincing opponents, but by waiting for them to pass away.","Many large companies are disrupted by startups not because they lack resources, but because executive teams' thinking has hardened into old patterns.","Munger, even near 100, kept learning new things — 'If I stop learning, I begin dying.'","People who abandon all intellectual challenges after retirement show significantly faster cognitive decline than those who keep learning."],
+      quote:"The greatest danger is not ignorance, but the illusion of knowledge — using a map from decades ago." },
+    { cat:"compound", title:"Curiosity Tendency", tagline:"Active curiosity is the best antidote to all psychological biases.",
+      explanation:"This is the only 'positive' tendency on Munger's list. He believes humans are naturally curious about new things, but modern society makes people increasingly passive. Actively maintaining curiosity is a habit that needs deliberate cultivation.",
+      examples:["Munger never read book summaries — he believed summaries robbed him of the chance to discover surprises.","He spent enormous time reading books across all fields, not to 'learn useful things,' but out of genuine curiosity.","His recommended reading method: follow the author's references to find the next book, rather than picking randomly from book lists.","He said: 'I have no special talent. I just maintain intense curiosity about things that puzzle me, and I must figure them out.'"],
+      quote:"A person armed with curiosity is never bored — and is forever improving." },
+  ],
+  ja: [
+    { cat:"reward", title:"インセンティブによる偏り", tagline:"インセンティブが何かを教えてくれれば、結果がどうなるか教えてあげよう。",
+      explanation:"人は無意識のうちに自分に有利な方向に行動し、後から合理化する理由を見つける。最も重要なのは、本人は自分がインセンティブの影響を受けていることに気づかず、客観的に判断していると心から信じていることだ。",
+      examples:["医師が高額な手術を勧めるのは、その手術が高収入をもたらすからかもしれないが、本人は最善の選択だと信じている。","フェデックスが時給制から完了後退勤制に変更したところ、効率が急上昇した。","時間給の弁護士は案件を長引かせる傾向がある。固定報酬の弁護士は効率的に解決しようとする。","株式アナリストは売り推奨より買い推奨をはるかに多く出す——買い推奨は顧客関係を維持するからだ。"],
+      quote:"床屋に散髪が必要かどうか聞いてはいけない。" },
+    { cat:"reward", title:"好意による偏り", tagline:"好きな人の言葉を、証拠がなくても信じてしまう。",
+      explanation:"人間は好きな人や尊敬する人に従い、信頼し、喜ばせようとし、その欠点や間違いを無視する傾向がある。この偏りは販売、政治、人間関係のあらゆる場面に存在する。",
+      examples:["営業マンがまず顧客の家族の写真について話し、好感を築いてからビジネスの話をする——好感度が判断基準を下げる。","友人が勧める金融商品は受け入れやすいが、見知らぬ人が同じ商品を勧めると懐疑的になる。","ファンはアイドルが宣伝する商品にプレミアムを払う、たとえ商品が特別でなくても。","交渉では、まず個人的な関係を築いてから要求すると、いきなりビジネスの話をするよりはるかに成功率が高い。"],
+      quote:"好意は論理を無視させる——これは人類最古の弱点の一つだ。" },
+    { cat:"reward", title:"嫌悪による偏り", tagline:"嫌いな人や物からの真実を受け入れることを拒否してしまう。",
+      explanation:"人は嫌いな人や対立する陣営からの正しい見解を無視し、歪曲し、積極的に攻撃さえする。この偏りにより「敵」から何も学べなくなる。",
+      examples:["政治では、一方が提案した合理的な政策を、もう一方が党派対立のために本能的に反対する。","従業員が競合他社の新しいアイデアを聞くと、まず批判する理由を探す。","投資家がある業界を嫌いだからという理由で投資を拒否する、たとえリターンが非常に高くても。","嫌いな人と同じ意見だと気づくと不快になり、自分の立場を再考することさえある。"],
+      quote:"真理を発見した人が不快だからといって、その真理を拒絶してはならない。" },
+    { cat:"reward", title:"嫉妬の傾向", tagline:"世界を動かしているのは貪欲ではなく、嫉妬だ。",
+      explanation:"「他人が持っていて自分にはない」という痛みは、「自分が持っていない」という不満をはるかに超える。他人が利益を得てもあなたの状況は悪化していないのに、人は痛みを感じる。",
+      examples:["二人の従業員が同時に昇給し、一方が10%、もう一方が15%——10%の方は昇給前より不満になる。","住宅価格上昇時、多くの人が必要ではなく「隣人が買ったから自分も買わなければ」という理由で購入する。","社内の比較文化はチームワークを深刻に損なう——従業員が互いを嫉妬し始めると協力が崩壊する。","SNSで元同僚の成功を見ると、自分の生活が順調でも説明のつかない喪失感を感じる。"],
+      quote:"嫉妬は最も愚かな罪だ——何も得られないのに、自分を苦しめるだけだ。" },
+    { cat:"cognitive", title:"疑念回避の傾向", tagline:"脳は不確実性を嫌い、不安を解消するために素早く判断を下す。",
+      explanation:"人間の脳は進化の過程で素早い意思決定の習慣を形成した。しかし現代の複雑な世界では、この「素早く確定する」衝動が、誤った結論に早期に固定される原因となる。",
+      examples:["陪審員は検察の冒頭陳述を聞いた後、すでに予備的判断を形成しており、その後の弁護は覆しにくい。","医師は問診の数分以内に診断仮説を形成し、その後の情報収集は「確認探し」になりがちだ。","投資家は新プロジェクトを見て数分で良し悪しの判断を形成し、その後のデューデリジェンスは形式的になる。","第一印象で信頼できないと感じた人は、その後何をしても「やっぱり」と解釈される。"],
+      quote:"不確実感を素早く消したいという衝動は、大量の認知エラーの根源だ。" },
+    { cat:"cognitive", title:"一貫性維持の傾向", tagline:"既存の信念、習慣、アイデンティティを変えることは極めて難しい。",
+      explanation:"一度信念や習慣が形成されると、人は強力な反証に直面しても本能的にそれを守ろうとする。変化は以前の判断が間違っていたことを認めることを意味し、自己イメージへの脅威となる。",
+      examples:["株が50%下落しても、保有者は買い増しする——「最初の判断が間違っていた」と認めるのが辛すぎて、「一時的な調整だ」と信じる方が楽だ。","科学界で新パラダイムの普及は常に極めて遅い——旧理論の支持者が亡くなるまで新理論は真に普及しない。","失敗した戦略を推進した経営者は、失敗を認めずに投資を追加し続ける——間違いを認めることは自分の判断力を疑うことになるからだ。","第一印象はほぼ変更不可能——初期判断に合致する証拠を選択的に記憶し、合致しないものは無視する。"],
+      quote:"結論が早く形成されるほど、変更は難しくなる——これがすべての偏見の根源だ。" },
+    { cat:"cognitive", title:"理由尊重の傾向", tagline:"人は行動に理由を必要とする、たとえ理由が馬鹿げていても。",
+      explanation:"人間の脳は「なぜなら」という言葉を非常に重視する。理由を一つ提示するだけで——たとえ実質的な内容がなくても——人々は従いやすくなる。私たちは「理由の質」よりも「理由の形式」に敏感だ。",
+      examples:["ランガーのコピー機実験：「割り込んでいいですか？コピーを取る必要があるので」の成功率は、実質的な理由を述べた場合とほぼ同じだった。","慈善団体が「子どもたちに助けが必要だから」と言うだけで、単純に依頼するよりはるかに高い寄付率を得る。","広告はよく「あなたにはその価値があるから」と言う——実質ゼロの理由だが、効果がある。","会議で誰かが何らかの理由を示せば、明らかに根拠が薄くても、提案が承認される確率が大幅に上がる。"],
+      quote:"人に理由を与えよ——たとえ悪い理由でも——説得がはるかに容易になる。" },
+    { cat:"cognitive", title:"過度の自己評価傾向", tagline:"ほぼ全員が自分を平均以上だと思っている。",
+      explanation:"人は自分の能力、判断力、道徳水準を体系的に過大評価する。成功すれば自分の功績、失敗すれば外部要因のせいにする。これは判断力を深刻に損なう。",
+      examples:["ドライバーの90%が自分の運転技術は平均以上だと考えている——統計的に不可能だ。","ほとんどの人が同年代より公平で賢いと思っている——刑務所でさえ、大多数の囚人が「普通の囚人」より善良だと考えている。","起業家は成功確率を普遍的に過大評価する——平均で70%以上を期待するが、実際にはほとんどの起業は失敗する。","投資家は利益を自分の眼力のおかげとし、損失を「市場の異常」や「情報の非対称性」のせいにする。"],
+      quote:"汝自身を知れ——最も難しい自己認識であり、最も価値ある自己認識だ。" },
+    { cat:"social", title:"社会的証明の傾向", tagline:"不確かな状況では、人は多数派の行動に従う。",
+      explanation:"何をすべきかわからないとき、他者の行動を観察することが最も省力な参考になる。進化的には合理的だが、現代社会では同調、バブル、集団的非合理を引き起こす。",
+      examples:["レストランの前に長い列ができると、通行人は「この店は良いに違いない」と思い列に加わる——最初の人たちはただ友人を待っていただけかもしれない。","1990年代のドットコムバブル：人々は「皆が買っている」という理由で利益のないテック株を購入した。","緊急事態では、傍観者が多いほど個人が助けに入る確率はかえって低下する——「傍観者効果」。","ファッション業界は完全に社会的証明で運営されている——「今年のトレンド」は本質的に「多くの人が着ている」という自己実現的予言だ。"],
+      quote:"隣人が金持ちになるのを見ること以上に、人の判断を狂わせるものはない。" },
+    { cat:"social", title:"権威への過度服従", tagline:"権威が間違っていても、人は過度に従ってしまう。",
+      explanation:"私たちは生まれつき権威——親、専門家、制度、肩書——を尊重し従う。これは独立思考の膨大なコストを省く。しかし権威自体が間違っているか悪用されると、壊滅的な結果を招く。",
+      examples:["ミルグラム実験：「権威ある科学者」の指示の下、普通の人が見知らぬ人に危険な電気ショックを与えることをいとわなかった——服従率は65%。","医療事故で、看護師が医師の指示が間違いだと知りながら実行した——医師が権威だから。","制服を着た詐欺師の成功率は普通の服装よりはるかに高い——制服は人々の警戒心を下げる権威の象徴だ。","金融危機前、格付け機関が有毒資産にAAA格付けを与え、投資家は「権威の認証」に基づいて大量に購入した。"],
+      quote:"権威が何かを言ったからといって、独立思考を止めてはならない。" },
+    { cat:"social", title:"地位追求の傾向", tagline:"社会的地位への渇望が、膨大な量の非合理的行動を駆動する。",
+      explanation:"社会的動物において、地位は資源獲得と生存確率を決定する。この古い駆動力は現代社会でブランド品、肩書、豪邸の追求として表れ、時に「面子」を守るために実質的利益を犠牲にする。",
+      examples:["多くの人が高級車を買うのは交通のためではなく「成功した」というシグナルを発信するため——たとえ重い借金を背負っても。","起業家が外部投資を拒否するのは、受け入れることが助けが必要であることを認め、「自力で成功した」イメージを損なうからだ。","交渉で多くの合意が破綻するのは、一方が「弱く見える」ことを拒否するから——たとえ実質的条件が有利でも。","SNSで「成功の瞬間」だけを共有し実生活を見せないのは、デジタル時代における地位追求傾向の表れだ。"],
+      quote:"人間は尊厳のために、経済的合理性をはるかに超える代償を払う。" },
+    { cat:"emotion", title:"ストレスの影響", tagline:"ストレスは判断を深刻に歪め、操作されやすくなる。",
+      explanation:"高いストレスや緊迫感の下では、意思決定の質が大幅に低下する。販売テクニック、交渉戦略、詐欺手口はすべてこれを利用する——「期間限定」「数量限定」「緊急」を作り出して素早い決定を強制する。",
+      examples:["「期間限定、残り3個！」——人工的なプレッシャーが理性的分析をスキップさせ、パニック買いモードに入らせる。","電話詐欺は「銀行口座が今すぐ危険です」と主張する——緊迫感が確認する前に行動させる。","交渉の専門家は、相手が「結果を急いでいる」ときに譲歩要求をすると成功率が大幅に上がることを知っている。","「今すぐ決めなければ」と急かされる場面では、冷静に待つことが実は最も賢明な戦略だ。"],
+      quote:"急かされていると感じるとき、それはまさにあなたが最もスローダウンすべきときだ。" },
+    { cat:"emotion", title:"損失回避の傾向", tagline:"損失の痛みは同等の利益の喜びの2倍。",
+      explanation:"人は利益よりも損失にはるかに敏感だ。100ドルを失う痛みは、約200ドルを得てようやく相殺される。これにより人々は損切りを拒否し、利益を早期に確定し、体系的に非合理的な決定を下す。",
+      examples:["投資家は含み損の株を手放せない——売却は「損失を現実にする」ことを意味し、保有は「ただの含み損」に過ぎない。","「手術成功率80%」と「手術死亡率20%」は同じことだが、前者の方が患者は手術を受け入れやすい。","企業は不合理な既存制度を維持し改革を嫌がる——改革は既存資源を手放すことを意味し、損失のように感じるからだ。","マンガーとバフェットの原則：穴を掘っていることに気づいたら、最初にすべきことは掘るのをやめることだ。"],
+      quote:"損失への恐怖は、利益への欲求よりも強く人間の行動を支配する。" },
+    { cat:"emotion", title:"感情で増幅される過信", tagline:"自分を過大評価すること——人類最も普遍的な認知バイアスの一つ。",
+      explanation:"感情が高ぶっているとき、過度の自己評価傾向はさらに増幅される——興奮や恐怖の状態で、平常時には絶対にしない判断を下してしまう。",
+      examples:["ギャンブラーは連勝すると「法則をつかんだ」と感じ、より大きなリスクを取り始める。","起業家は初期の小さな成功の後、より大きな賭けで同じ過ちを犯しがちだ——ただ規模が大きくなるだけ。","市場の熱狂時、「今回は違う」は最も危険な4つの言葉——マンガーはこの言葉を聞くと警戒すると言った。","感情的な高揚時に下した決定は、冷静になった後に自分でも困惑することが多い。"],
+      quote:"自分が万能だと感じるとき、それはまさに最も危険な瞬間だ。" },
+    { cat:"memory", title:"単純連想の傾向", tagline:"脳は同時に現れるものを結びつける、たとえ因果関係がなくても。",
+      explanation:"パブロフの犬はベルの音で唾液を分泌した——ベルと食物が同時に現れたからだ。人間にも同じメカニズムがある——同時に起こる事象を結びつけ、条件反射的な連想を形成する。",
+      examples:["ブランド広告は製品を美しい人、成功、幸福と並べ、消費者にこの製品を買えばこれらが得られると連想させる。","迷信の起源：選手が勝利前に赤い靴下を履き、以後すべての試合で赤い靴下を履く——二つの事象がたまたま同時に起きただけ。","悪い知らせを伝える人はその知らせ自体のために嫌われる——「使者を殺す」衝動は単純連想の働きだ。","マンガーはビジネス会議で人を批判しないと言う——連想効果により批判された感覚が彼自身と結びつくからだ。"],
+      quote:"連想は脳の最も古い学習メカニズムであり、最も容易に利用される弱点だ。" },
+    { cat:"memory", title:"コントラスト効果", tagline:"人は絶対基準ではなく、比較で物事を判断する。",
+      explanation:"あらゆるものの知覚は参照枠の影響を受ける。同じものでも異なる背景では感じ方がまったく異なる。営業マン、交渉者、デザイナーはこの効果を広く利用して知覚を操作する。",
+      examples:["不動産業者はまず数件の高価で古い物件を見せ、次に本当に売りたい物件を見せる——比較により目標物件がお買い得に見える。","レストランのメニューに200ドルの「プレミアムステーキ」を載せるのは、それを売るためではなく、隣の80ドルのステーキを「妥当」に見せるためだ。","まず極端な要求をして拒否させ、次に本当に望む合理的な要求をする——比較により二番目が小さく見える。","給与交渉で最初に高い数字でアンカリングし、次に譲歩すると、相手は「お得だ」と感じる。"],
+      quote:"知覚は絶対的ではなく、常に相対的だ——これがすべての操作手段の基礎だ。" },
+    { cat:"memory", title:"サンクコストの傾向", tagline:"すでに投資したからという理由で、すべきでないことを続ける。",
+      explanation:"サンクコストとは回収不可能な投資——時間、お金、感情。合理的には、意思決定は「未来」のみに基づくべきで、「過去の投資」に基づくべきではない。しかし人間にとってこれは極めて難しい。",
+      examples:["コンコルド：英仏両政府はプロジェクトが商業的に不可能だと知りながら、すでに投入した資金のために何年も続けた。","「チケットを買ったから」というだけで、つまらない映画を最後まで見る——しかしチケット代は戻らない。続けて見るのは時間の無駄だ。","「こんなに長く一緒にいたから」という理由だけで、不幸な結婚を10年間維持する。","ベトナム戦争は典型的なサンクコストの事例——犠牲になった兵士の死を「意味あるものに」するために勝てない戦争を続けた。"],
+      quote:"穴の中にいることに気づいたら、最も重要なのは掘るのをやめることだ。" },
+    { cat:"compound", title:"ルーラパルーザ効果", tagline:"複数のバイアスが同じ方向に働くと、極端な非合理性が生まれる。",
+      explanation:"これはマンガー最もユニークな貢献だ。個々の心理バイアスの影響は限定的だが、複数のバイアスが同時に同じ方向を指すと、超線形の極端な効果を生む——核分裂のように臨界点に達して爆発的に発展する。",
+      examples:["マルチ商法は同時に活性化する：社会的証明＋権威＋インセンティブ＋好意バイアス＋サンクコスト——複数バイアスの重層で、脱出はほぼ不可能。","カルト：愛の爆撃で好意を構築＋権威的リーダーが独立判断を置き換え＋社会的証明が信仰を強化＋嫌悪傾向が脱出路を遮断。","株式市場バブル：社会的証明＋損失回避＋権威の承認＋過信——4層の重なりが集団的狂気を生む。","カジノは同時に利用する：間歇的強化＋社会的証明＋コントラスト効果＋ストレス——強力な中毒性。"],
+      quote:"一つのバイアスは小さな漏れ、複数のバイアスの重なりは洪水だ。これを理解すれば、歴史上のすべての狂気を理解できる。" },
+    { cat:"compound", title:"中毒の傾向", tagline:"強い報酬をもたらすものに容易に中毒になり、すべての判断を歪める。",
+      explanation:"特定の行動は脳の強力な報酬メカニズムを引き起こす。一度中毒になると、その報酬を得るためにすべての判断と行動を歪める。マンガーはこのカテゴリーを権力、金銭、名声など様々な形の「中毒」に拡張した。",
+      examples:["権力中毒：歴史上多くの指導者が権力を得た後、道徳よりも権力維持を優先する決定を下した。","SNSの「いいね」機能は設計された間歇的強化——不確実性が人を繰り返しチェックさせる。","仕事中毒：「達成感」自体が中毒性を持ち、健康と家族を犠牲にする原因となる。","金融界の過度なリスクテイク：大儲けした後の興奮がトレーダーを合理的なリスク境界を超えてリスクを取り続けさせる。"],
+      quote:"中毒は薬物だけの問題ではない。強い報酬感を引き起こすものすべてに、人の判断を失わせる可能性がある。" },
+    { cat:"compound", title:"老化と思考の硬直化", tagline:"年齢とともに、新しい情報を受け入れ変化することがますます難しくなる。",
+      explanation:"脳は年齢とともに徐々に固定化し、既存パターンへの強い選好を形成する。これにより高齢者はより頑固になり、信念の更新が難しくなり、過去の枠組みで新しい問題を解釈しがちになる。",
+      examples:["プランクは言った：科学の進歩は反対者を説得することではなく、彼らが亡くなるのを待つことで起こる。","多くの大企業がスタートアップに破壊されるのは、資源不足ではなく、経営チームの思考が古いパターンに固定化しているからだ。","マンガーは100歳近くになっても新しいことを学び続けた——「学ぶことをやめたら、死に始める」。","退職後にすべての知的挑戦を放棄した人は、学び続ける人よりも認知機能の低下が著しく速い。"],
+      quote:"最大の危険は無知ではなく、知っているという幻想——数十年前の古い地図を使っていることだ。" },
+    { cat:"compound", title:"好奇心の傾向", tagline:"能動的な好奇心は、すべての心理バイアスに対する最良の解毒剤。",
+      explanation:"これはマンガーのリストで唯一の「ポジティブな」傾向だ。人間は生まれつき新しいものに好奇心を持つが、現代社会は人をますます受動的にする。好奇心を能動的に維持することは意識的に培う必要がある習慣だ。",
+      examples:["マンガーは本の要約を決して読まなかった——要約は驚きを発見する機会を奪うと考えていた。","彼は毎日あらゆる分野の本を大量に読んだ。「役に立つことを学ぶ」ためではなく、純粋な好奇心からだ。","彼の推奨する読書法：著者の引用をたどって次の本を見つける、ブックリストからランダムに選ぶのではなく。","彼は言った：「特別な才能はない。ただ自分を困惑させることに対して極度の好奇心を持ち、必ず解明するだけだ。」"],
+      quote:"好奇心を持つ人は決して退屈しない——そして永遠に進歩し続ける。" },
+  ],
+  es: [
+    { cat:"reward", title:"Sesgo por Incentivos", tagline:"Muéstrame el incentivo y te mostraré el resultado.",
+      explanation:"Las personas actúan inconscientemente en su propio beneficio financiero y luego racionalizan su comportamiento. Lo clave es que la persona generalmente no se da cuenta de que está siendo influenciada por los incentivos — cree sinceramente que está haciendo juicios objetivos.",
+      examples:["Un médico recomienda una cirugía cara en parte porque paga más, pero genuinamente cree que es la mejor opción para el paciente.","FedEx cambió del pago por hora al pago por finalización de turno, y la eficiencia se disparó de la noche a la mañana.","Los abogados pagados por hora alargan los casos; los que cobran tarifa fija los resuelven rápidamente.","Los analistas bursátiles emiten muchas más recomendaciones de 'compra' que de 'venta' — las recomendaciones de compra mantienen las relaciones con los clientes."],
+      quote:"Nunca le preguntes a un peluquero si necesitas un corte de pelo." },
+    { cat:"reward", title:"Tendencia al Agrado", tagline:"Creemos lo que nos dicen las personas que nos agradan, incluso sin evidencia.",
+      explanation:"Los humanos tienden a cumplir, confiar y complacer a las personas que les gustan o admiran, ignorando sus defectos o errores. Este sesgo está en todas partes: ventas, política y relaciones personales.",
+      examples:["Un vendedor primero habla de las fotos familiares del cliente, construyendo simpatía — la simpatía reduce los estándares de juicio.","Tendemos a aceptar productos financieros recomendados por amigos pero desconfiamos del mismo producto de un extraño.","Los fans pagan precios premium por productos que promocionan sus ídolos, aunque no sean excepcionales.","En negociaciones, construir rapport personal antes de hacer peticiones produce tasas de éxito mucho mayores que ir directo al negocio."],
+      quote:"El agrado hace que las personas ignoren la lógica — es una de las debilidades más antiguas de la humanidad." },
+    { cat:"reward", title:"Tendencia al Rechazo", tagline:"Rechazamos verdades que vienen de personas o cosas que nos desagradan.",
+      explanation:"Las personas ignoran, distorsionan o atacan activamente las opiniones correctas de aquellos que les desagradan o del bando opuesto. Este sesgo impide aprender nada de los 'enemigos'.",
+      examples:["En política, un partido se opone instintivamente a una política razonable propuesta por el otro, incluso cuando es objetivamente buena.","Cuando los empleados escuchan una nueva idea de un competidor, su primera reacción es buscar razones para criticarla.","Los inversores se niegan a invertir en industrias que les desagradan, incluso cuando los retornos son excepcionalmente altos.","Cuando estamos de acuerdo con alguien que nos desagrada, nos sentimos incómodos e incluso reconsideramos nuestra posición."],
+      quote:"No rechaces una verdad solo porque la persona que la descubrió te desagrada." },
+    { cat:"reward", title:"Tendencia a la Envidia", tagline:"No es la avaricia lo que mueve el mundo, sino la envidia.",
+      explanation:"El dolor de 'otros tienen lo que yo no' supera con creces el dolor de simplemente 'no tener'. Que otra persona gane no empeora tu situación, pero los humanos sienten dolor de todos modos.",
+      examples:["Dos empleados reciben aumentos — 10% y 15% respectivamente. El que recibió 10% está más descontento que antes de cualquier aumento.","Durante los booms inmobiliarios, muchos compran no por necesidad sino porque 'mi vecino compró, así que yo también debo'.","La cultura de comparación interna daña severamente el trabajo en equipo — cuando los empleados comienzan a envidiarse, la cooperación colapsa.","Ver el éxito de un ex colega en redes sociales nos hace sentir inexplicablemente mal, incluso si nuestra vida va bien."],
+      quote:"La envidia es el pecado más tonto — no ganas nada de ella, pero te atormenta sin fin." },
+    { cat:"cognitive", title:"Tendencia a Evitar la Duda", tagline:"El cerebro odia la incertidumbre y se apresura a juzgar para eliminar la ansiedad.",
+      explanation:"El cerebro humano evolucionó para tomar decisiones rápidas. Pero en nuestro complejo mundo moderno, este impulso de 'decidir rápidamente' nos encierra prematuramente en conclusiones erróneas.",
+      examples:["Los jurados forman juicios preliminares después de la declaración inicial del fiscal — los argumentos de la defensa luchan por cambiar sus mentes.","Los médicos forman hipótesis diagnósticas en minutos y luego recopilan información que confirma su hipótesis.","Los inversores forman juicios sobre nuevos proyectos en minutos — la debida diligencia posterior se vuelve una formalidad.","Una vez que decidimos que alguien no es confiable a primera vista, todo lo que hace se interpreta como 'lo sabía'."],
+      quote:"El impulso de eliminar rápidamente la duda es la fuente de innumerables errores cognitivos." },
+    { cat:"cognitive", title:"Tendencia a Evitar la Inconsistencia", tagline:"Es extremadamente difícil cambiar creencias, hábitos e identidad existentes.",
+      explanation:"Una vez que se forma una creencia o hábito, las personas instintivamente lo defienden, incluso ante evidencia contradictoria poderosa. El cambio significa admitir que los juicios previos estaban equivocados, lo que amenaza la autoimagen.",
+      examples:["Cuando una acción cae 50%, los poseedores duplican en lugar de admitir 'me equivoqué' — es menos doloroso creer 'es solo una caída temporal'.","Los nuevos paradigmas en ciencia se difunden extremadamente lento — los defensores de viejas teorías a menudo deben morir antes de que las nuevas prevalezcan.","Ejecutivos que impulsaron estrategias fallidas siguen invirtiendo más en lugar de admitir el fracaso, porque estar equivocado amenaza su autoimagen.","Las primeras impresiones son casi imposibles de cambiar — recordamos selectivamente evidencia que confirma nuestro juicio inicial."],
+      quote:"Cuanto antes se forma una conclusión, más difícil es cambiarla — esta es la raíz de todos los prejuicios." },
+    { cat:"cognitive", title:"Tendencia a Respetar las Razones", tagline:"Las personas necesitan una razón para actuar, incluso si es absurda.",
+      explanation:"El cerebro humano valora enormemente la palabra 'porque'. Proporcionar cualquier razón — incluso una sin sustancia real — hace que las personas sean mucho más complacientes. Somos más sensibles a la forma de una razón que a su calidad.",
+      examples:["Experimento de la fotocopiadora de Langer: 'Puedo pasar? Porque necesito hacer copias' tuvo casi la misma tasa de éxito que dar una razón real.","Las organizaciones benéficas que dicen 'porque los niños necesitan ayuda' obtienen tasas de donación mucho más altas que las que simplemente piden.","La publicidad a menudo dice 'Porque tú lo vales' — una razón sin sustancia, pero funciona.","En reuniones, cualquiera que proporcione cualquier razón, aunque sea débil, aumenta dramáticamente la probabilidad de que su propuesta sea aprobada."],
+      quote:"Dale a la gente una razón — incluso una mala — y se vuelven mucho más fáciles de persuadir." },
+    { cat:"cognitive", title:"Excesiva Autoestima", tagline:"Casi todos creen que están por encima del promedio.",
+      explanation:"Las personas sobreestiman sistemáticamente sus habilidades, juicio y nivel moral. Cuando hay éxito, se lo atribuyen; cuando hay fracaso, culpan a factores externos. Esto deteriora severamente el juicio.",
+      examples:["El 90% de los conductores creen que sus habilidades de conducción están por encima del promedio — estadísticamente imposible.","La mayoría de las personas creen que son más justas e inteligentes que sus pares — incluso en prisión, la mayoría de los reclusos creen que son más bondadosos que el 'preso promedio'.","Los emprendedores sobreestiman consistentemente sus posibilidades de éxito — esperan más del 70%, mientras que la mayoría de las startups fracasan.","Los inversores atribuyen las ganancias a su visión pero culpan las pérdidas a 'anomalías del mercado' o 'asimetría de información'."],
+      quote:"Conócete a ti mismo — el autoconocimiento más difícil y el más valioso." },
+    { cat:"social", title:"Tendencia a la Prueba Social", tagline:"Cuando hay incertidumbre, las personas siguen lo que hace la mayoría.",
+      explanation:"Cuando no sabemos qué hacer, observar el comportamiento de otros se convierte en la referencia más fácil. Esto tenía sentido evolutivo, pero en la sociedad moderna lleva al conformismo, burbujas e irracionalidad colectiva.",
+      examples:["Una larga fila frente a un restaurante hace que los transeúntes piensen 'debe ser bueno' y se unan — aunque los primeros solo esperaban a amigos.","La burbuja punto-com de los 90: la gente compraba acciones tecnológicas sin beneficios porque 'todos están comprando'.","En emergencias, cuantos más espectadores hay, menos probable es que alguien ayude — el 'efecto espectador'.","La industria de la moda funciona completamente por prueba social — 'la tendencia de este año' es esencialmente una profecía autocumplida de 'mucha gente lo usa'."],
+      quote:"Nada perturba más el juicio de una persona que ver a su vecino hacerse rico." },
+    { cat:"social", title:"Tendencia a la Influencia de Autoridad", tagline:"Las personas obedecen excesivamente a la autoridad, incluso cuando se equivoca.",
+      explanation:"Estamos programados para respetar y obedecer a la autoridad — padres, expertos, instituciones, títulos. Esto ahorra enormes costos de pensamiento. Pero cuando la autoridad se equivoca o se abusa de ella, las consecuencias pueden ser catastróficas.",
+      examples:["Experimento de Milgram: personas comunes siguieron instrucciones de un 'científico autoritario' para administrar descargas peligrosas — la tasa de obediencia fue del 65%.","En errores médicos, enfermeras sabían que la orden del médico era incorrecta pero la ejecutaron — porque el médico es la autoridad.","Los estafadores en uniforme tienen mucho más éxito que los vestidos normalmente — los uniformes bajan la guardia.","Antes de la crisis financiera, las agencias calificadoras dieron AAA a activos tóxicos, y los inversores compraron masivamente basándose en la 'certificación autoritaria'."],
+      quote:"Nunca dejes de pensar independientemente solo porque una autoridad dijo algo." },
+    { cat:"social", title:"Tendencia a Buscar Estatus", tagline:"El anhelo humano de estatus social impulsa enormes cantidades de comportamiento irracional.",
+      explanation:"En animales sociales, el estatus determina el acceso a recursos y la probabilidad de supervivencia. Este impulso antiguo se manifiesta en la sociedad moderna como búsqueda de marcas de lujo, títulos y mansiones — a veces a expensas de intereses reales para preservar la 'imagen'.",
+      examples:["Muchos compran autos de lujo no por transporte sino para señalar 'he triunfado' — incluso si significa deudas aplastantes.","Emprendedores rechazan inversión externa porque aceptarla significa admitir que necesitan ayuda, dañando su imagen de 'éxito propio'.","En negociaciones, muchos acuerdos colapsan porque una parte se niega a 'parecer débil', incluso cuando los términos reales son favorables.","Compartir solo 'momentos de éxito' en redes sociales en lugar de la vida real es la tendencia al estatus en la era digital."],
+      quote:"Los humanos pagarán un precio que supera con creces la racionalidad económica por el bien de la dignidad." },
+    { cat:"emotion", title:"Tendencia a la Influencia del Estrés", tagline:"El estrés distorsiona severamente el juicio y hace a las personas más manipulables.",
+      explanation:"Bajo alto estrés o urgencia, la calidad de las decisiones cae dramáticamente. Técnicas de venta, tácticas de negociación y estafas explotan esto — creando 'tiempo limitado', 'escasez' y 'urgencia' para forzar decisiones rápidas.",
+      examples:["'Oferta limitada, solo quedan 3!' — la presión fabricada hace que las personas salten el análisis racional y entren en modo de compra de pánico.","Las estafas telefónicas afirman 'su cuenta bancaria está en peligro ahora mismo' — la urgencia hace que la gente actúe antes de poder verificar.","Los expertos en negociación saben que hacer solicitudes de concesión cuando el otro lado 'necesita resultados urgentemente' aumenta dramáticamente la tasa de éxito.","Cuando te presionan para 'decidir ahora mismo', esperar con calma es en realidad la estrategia más inteligente."],
+      quote:"Cuando sientes prisa, ese es precisamente el momento en que más necesitas desacelerar." },
+    { cat:"emotion", title:"Tendencia a la Aversión a la Pérdida", tagline:"El dolor de la pérdida es el doble del placer de una ganancia equivalente.",
+      explanation:"Las personas son mucho más sensibles a las pérdidas que a las ganancias. Perder $100 causa un dolor que requiere ganar unos $200 para compensar. Esto hace que las personas se nieguen a cortar pérdidas, tomen ganancias demasiado pronto y tomen decisiones sistemáticamente irracionales.",
+      examples:["Los inversores se aferran a acciones perdedoras — vender significa 'hacer la pérdida real', mientras que mantener es 'solo una pérdida en papel'.","'80% de tasa de éxito quirúrgico' y '20% de tasa de mortalidad quirúrgica' son lo mismo, pero el primer marco hace que los pacientes estén más dispuestos.","Las empresas prefieren mantener sistemas heredados injustos a reformar — porque la reforma significa renunciar a recursos existentes, lo que se siente como una pérdida.","Principio de Munger y Buffett: Cuando descubres que estás en un hoyo, lo primero es dejar de cavar."],
+      quote:"El miedo a la pérdida a menudo domina el comportamiento humano más que el deseo de ganancia." },
+    { cat:"emotion", title:"Sobreconfianza Amplificada por Emoción", tagline:"Sobreestimarse a uno mismo es uno de los sesgos cognitivos más universales.",
+      explanation:"Cuando las emociones están altas, la tendencia a la excesiva autoestima se amplifica aún más — las personas toman juicios durante la excitación o el miedo que nunca tomarían en estado de calma.",
+      examples:["Los apostadores en racha ganadora sienten que han 'descubierto el patrón' y comienzan a tomar riesgos mucho mayores.","Los emprendedores después de pequeños éxitos tempranos a menudo cometen los mismos errores en apuestas más grandes, solo que a mayor escala.","Durante la manía del mercado, 'esta vez es diferente' son las cuatro palabras más peligrosas — Munger dice que se pone en alerta cuando las escucha.","Las decisiones tomadas durante picos emocionales a menudo dejan perplejas a las personas una vez que se calman."],
+      quote:"Cuando te sientes invencible, ese es precisamente el momento de mayor peligro." },
+    { cat:"memory", title:"Tendencia a la Asociación Simple", tagline:"El cerebro vincula cosas que aparecen juntas, incluso sin relación causal.",
+      explanation:"Los perros de Pavlov salivaban al sonido de una campana porque campanas y comida habían aparecido juntas. Los humanos tienen el mismo mecanismo — vinculamos eventos co-ocurrentes y formamos asociaciones condicionadas.",
+      examples:["Los anuncios de marca emparejan productos con personas atractivas, éxito y felicidad, haciendo que los consumidores asocien el producto con obtener estas cosas.","Origen de la superstición: un atleta usó calcetines rojos antes de un juego ganado y luego los usó en cada juego — mera coincidencia.","Los portadores de malas noticias son rechazados por la noticia en sí — el impulso de 'matar al mensajero' es asociación simple en acción.","Munger dice que nunca critica a personas en reuniones de negocios — el efecto de asociación vincularía sentimientos negativos con él personalmente."],
+      quote:"La asociación es el mecanismo de aprendizaje más antiguo del cerebro y su debilidad más fácilmente explotada." },
+    { cat:"memory", title:"Efecto Contraste", tagline:"Las personas no juzgan las cosas por estándares absolutos, sino por comparación.",
+      explanation:"Nuestra percepción de cualquier cosa está influenciada por el marco de referencia. Lo mismo se siente completamente diferente contra diferentes fondos. Vendedores, negociadores y diseñadores explotan extensamente este efecto para manipular la percepción.",
+      examples:["Los agentes inmobiliarios muestran primero algunas casas caras y deterioradas, luego la que realmente quieren vender — en comparación, la casa objetivo parece una ganga.","Un menú de restaurante lista un 'bistec premium' de $200 no para venderlo, sino para que el bistec de $80 al lado parezca 'razonable'.","Primero hacer una petición extrema que es rechazada, luego hacer la petición razonable real — en contraste, la segunda parece pequeña.","En negociaciones salariales, anclar alto primero y luego ceder hace que el otro lado sienta que 'consiguió un buen trato'."],
+      quote:"La percepción nunca es absoluta, siempre relativa — esta es la base de toda manipulación." },
+    { cat:"memory", title:"Tendencia al Costo Hundido", tagline:"Continuar algo que no deberías, solo porque ya invertiste.",
+      explanation:"Los costos hundidos son inversiones que nunca pueden recuperarse — tiempo, dinero, emoción. Racionalmente, las decisiones solo deberían basarse en el futuro, no en inversiones pasadas. Pero los humanos encuentran esto extremadamente difícil.",
+      examples:["El Concorde: los gobiernos británico y francés sabían que el proyecto era comercialmente inviable pero continuaron durante años por el dinero ya gastado.","Ver una película aburrida hasta el final 'porque ya compré la entrada' — pero el dinero de la entrada se fue; continuar solo desperdicia tiempo.","Mantener un matrimonio infeliz por una década 'porque hemos estado juntos tanto tiempo'.","La Guerra de Vietnam fue un caso de libro de costo hundido — continuar una guerra imposible de ganar para que las muertes de los soldados sacrificados fueran 'significativas'."],
+      quote:"Si te encuentras en un hoyo, lo más importante es dejar de cavar." },
+    { cat:"compound", title:"Efecto Lollapalooza", tagline:"Múltiples sesgos empujando en la misma dirección producen irracionalidad extrema.",
+      explanation:"Esta es la contribución más única de Munger. Los sesgos psicológicos individuales tienen impacto limitado, pero cuando múltiples sesgos apuntan en la misma dirección simultáneamente, producen efectos extremos superlineales — como la fisión nuclear, alcanzando masa crítica y luego explotando.",
+      examples:["Los esquemas MLM activan simultáneamente: prueba social + autoridad + incentivos + sesgo de agrado + costos hundidos — múltiples sesgos apilados, casi imposible escapar.","Cultos: bombardeo de amor construye agrado + líder autoritario reemplaza juicio independiente + prueba social refuerza creencias + tendencia al rechazo bloquea escape.","Burbujas bursátiles: prueba social + aversión a la pérdida + respaldo autoritario + sobreconfianza — cuatro capas creando manía colectiva.","Los casinos explotan simultáneamente: refuerzo intermitente + prueba social + efecto contraste + estrés — poderosa adicción."],
+      quote:"Un sesgo es una pequeña fuga; varios sesgos apilados crean una inundación. Entiende esto y entenderás toda la locura de la historia." },
+    { cat:"compound", title:"Tendencia a la Adicción", tagline:"Las personas se vuelven fácilmente adictas a cosas que proporcionan recompensas intensas, distorsionando todo juicio.",
+      explanation:"Ciertos comportamientos activan los poderosos mecanismos de recompensa del cerebro. Una vez adictas, las personas distorsionan todos los juicios y comportamientos para obtener esa recompensa. Munger extiende esta categoría más allá de sustancias al poder, dinero, fama y otras formas de 'adicción'.",
+      examples:["Adicción al poder: muchos líderes históricos, después de ganar poder, tomaron decisiones para proteger el poder que superaban con creces las consideraciones morales.","Los 'me gusta' de redes sociales son refuerzo intermitente diseñado — la incertidumbre hace que las personas revisen repetidamente.","Adicción al trabajo: la sensación de logro puede ser adictiva, causando que las personas sacrifiquen salud y familia.","Toma de riesgos financieros: la emoción de los traders después de una gran ganancia los impulsa a seguir tomando riesgos más allá de límites razonables."],
+      quote:"La adicción no es solo sobre drogas. Cualquier cosa que desencadene una recompensa intensa tiene el potencial de hacer que las personas pierdan su juicio." },
+    { cat:"compound", title:"Envejecimiento y Rigidez Mental", tagline:"Con la edad, es cada vez más difícil aceptar nueva información y cambiar.",
+      explanation:"El cerebro se osifica gradualmente con la edad, formando fuertes preferencias por los patrones existentes. Esto hace que los ancianos sean más tercos, más difíciles de actualizar creencias, y más inclinados a interpretar nuevos problemas con marcos antiguos.",
+      examples:["Planck dijo: la ciencia avanza no convenciendo a los oponentes, sino esperando a que mueran.","Muchas grandes empresas son disrumpidas por startups no porque les falten recursos, sino porque el pensamiento de los equipos ejecutivos se ha endurecido en patrones antiguos.","Munger, incluso cerca de los 100 años, seguía aprendiendo cosas nuevas — 'Si dejo de aprender, empiezo a morir'.","Las personas que abandonan todos los desafíos intelectuales después de jubilarse muestran un deterioro cognitivo significativamente más rápido que quienes siguen aprendiendo."],
+      quote:"El mayor peligro no es la ignorancia, sino la ilusión de conocimiento — usando un mapa de hace décadas." },
+    { cat:"compound", title:"Tendencia a la Curiosidad", tagline:"La curiosidad activa es el mejor antídoto contra todos los sesgos psicológicos.",
+      explanation:"Esta es la única tendencia 'positiva' en la lista de Munger. Él cree que los humanos son naturalmente curiosos sobre cosas nuevas, pero la sociedad moderna hace a las personas cada vez más pasivas. Mantener activamente la curiosidad es un hábito que necesita cultivo deliberado.",
+      examples:["Munger nunca leía resúmenes de libros — creía que los resúmenes le robaban la oportunidad de descubrir sorpresas.","Pasaba enorme tiempo leyendo libros de todos los campos, no para 'aprender cosas útiles', sino por genuina curiosidad.","Su método de lectura recomendado: seguir las referencias del autor para encontrar el siguiente libro, en lugar de elegir al azar de listas.","Dijo: 'No tengo talento especial. Solo mantengo una curiosidad intensa sobre las cosas que me desconciertan, y debo descifrarlas'."],
+      quote:"Una persona armada con curiosidad nunca se aburre — y mejora para siempre." },
+  ],
+};
+
+const LANGS = [
+  { code: 'zh', label: '中文' },
+  { code: 'en', label: 'English' },
+  { code: 'ja', label: '日本語' },
+  { code: 'es', label: 'Español' },
+];
+
+let currentLang = 'zh';
+let cur = 0;
+let flipped = false;
+let filterCat = 'all';
+
+function filtered() {
+  const cards = CARDS_I18N[currentLang];
+  if (filterCat === 'all') return cards;
+  return cards.filter(c => c.cat === filterCat);
+}
+function catColor(cat) { return CAT_COLORS[cat]?.color || '#888'; }
+function catLight(cat) { return CAT_COLORS[cat]?.light || '#eee'; }
+function catName(catKey) { return CATS_I18N[currentLang][catKey] || catKey; }
+function ui(key) { return UI[currentLang][key] || key; }
+
+function renderLangBar() {
+  const bar = document.getElementById('lang-bar');
+  bar.innerHTML = LANGS.map(l =>
+    `<button class="lang-btn${l.code===currentLang?' active':''}" onclick="switchLang('${l.code}')">${l.label}</button>`
+  ).join('');
+}
+
+function switchLang(code) {
+  currentLang = code;
+  cur = 0;
+  flipped = false;
+  filterCat = 'all';
+  document.getElementById('card').classList.remove('flipped');
+  document.documentElement.lang = code;
+  renderLangBar();
+  renderUI();
+  buildCatNav();
+  renderCard();
+  renderGrid();
+}
+
+function renderUI() {
+  document.getElementById('page-title').textContent = ui('title');
+  document.getElementById('page-subtitle').textContent = ui('subtitle');
+  document.getElementById('btn-card').textContent = ui('cardView');
+  document.getElementById('btn-grid').textContent = ui('gridView');
+  document.getElementById('prev-text').textContent = ui('prev');
+  document.getElementById('next-text').textContent = ui('next');
+  document.getElementById('flip-btn-text').textContent = ui('flip');
+  document.getElementById('flip-hint-text').textContent = ui('flipHint');
+  document.getElementById('footer-text').textContent = ui('footer');
+}
+
+function renderCard() {
+  const cards = filtered();
+  if (!cards.length) return;
+  const c = cards[cur];
+  const allCards = CARDS_I18N[currentLang];
+  const color = catColor(c.cat);
+  const light = catLight(c.cat);
+  document.getElementById('prog-label').textContent = `${cur+1} / ${cards.length}`;
+  document.getElementById('cat-label').textContent = catName(c.cat);
+  document.getElementById('prog-fill').style.width = ((cur+1)/cards.length*100)+'%';
+  document.getElementById('front-bar').style.background = color;
+  document.getElementById('front-num').textContent = `${ui('model')} ${String(allCards.indexOf(c)+1).padStart(2,'0')}`;
+  document.getElementById('front-cat').textContent = catName(c.cat);
+  document.getElementById('front-title').textContent = c.title;
+  document.getElementById('front-tagline').textContent = `"${c.tagline}"`;
+  document.getElementById('back-bar').style.background = color;
+  const exHtml = c.examples.map((e,i)=>
+    `<li><span class="ex-num" style="background:${light};color:${color}">${i+1}</span><span>${e}</span></li>`
+  ).join('');
+  document.getElementById('back-content').innerHTML = `
+    <div>
+      <div class="back-section-label">${ui('coreExplanation')}</div>
+      <div class="back-explanation">${c.explanation}</div>
+    </div>
+    <div>
+      <div class="back-section-label">${ui('realExamples')}</div>
+      <ul class="examples-list">${exHtml}</ul>
+    </div>
+    ${c.quote ? `<div class="munger-quote-box">${ui('mungerSays')}："${c.quote}"</div>` : ''}
+  `;
+  document.getElementById('prev-btn').disabled = cur === 0;
+  document.getElementById('next-btn').disabled = cur === cards.length-1;
+  if (flipped) {
+    flipped = false;
+    document.getElementById('card').classList.remove('flipped');
+  }
+}
+
+function flipCard() {
+  flipped = !flipped;
+  document.getElementById('card').classList.toggle('flipped', flipped);
+}
+function go(dir) {
+  const cards = filtered();
+  cur = Math.max(0, Math.min(cards.length-1, cur+dir));
+  flipped = false;
+  document.getElementById('card').classList.remove('flipped');
+  renderCard();
+}
+function buildCatNav() {
+  const nav = document.getElementById('cat-nav');
+  const allCats = ['all', ...Object.keys(CAT_COLORS)];
+  nav.innerHTML = '';
+  allCats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (cat===filterCat?' active':'');
+    btn.textContent = cat === 'all' ? ui('all') : catName(cat);
+    btn.dataset.cat = cat;
+    btn.onclick = () => {
+      filterCat = cat;
+      cur = 0;
+      flipped = false;
+      document.getElementById('card').classList.remove('flipped');
+      document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));
+      renderCard();
+      renderGrid();
+    };
+    nav.appendChild(btn);
+  });
+}
+function renderGrid() {
+  const cards = filtered();
+  const allCards = CARDS_I18N[currentLang];
+  const grid = document.getElementById('grid');
+  grid.innerHTML = cards.map((c,i) => {
+    const color = catColor(c.cat);
+    const light = catLight(c.cat);
+    const globalIdx = allCards.indexOf(c);
+    return `<div class="mini-card" onclick="jumpTo(${i})">
+      <div class="mc-bar" style="background:${color}"></div>
+      <div class="mc-num">${ui('model')} ${String(globalIdx+1).padStart(2,'0')} · ${catName(c.cat)}</div>
+      <div class="mc-title">${c.title}</div>
+      <span class="mc-tag" style="background:${light};color:${color}">${catName(c.cat)}</span>
+      <div class="mc-tagline">"${c.tagline}"</div>
+    </div>`;
+  }).join('');
+}
+function jumpTo(i) {
+  cur = i;
+  flipped = false;
+  setView('card');
+  renderCard();
+}
+function setView(v) {
+  document.getElementById('card-view').classList.toggle('visible', v==='card');
+  document.getElementById('grid-view').classList.toggle('visible', v==='grid');
+  document.getElementById('btn-card').classList.toggle('active', v==='card');
+  document.getElementById('btn-grid').classList.toggle('active', v==='grid');
+}
+
+// Init
+renderLangBar();
+renderUI();
+buildCatNav();
+renderCard();
+renderGrid();
+</script>
+</body>
+</html>
